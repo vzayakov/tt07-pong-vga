@@ -5,7 +5,7 @@ module tt_um_vzayakov_top (
 	uio_in,
 	uio_out,
 	uio_oe,
-	ena
+	ena,
 	clk,
 	rst_n
 );
@@ -13,6 +13,7 @@ module tt_um_vzayakov_top (
 	output wire [7:0] ui_out;
 	input wire [7:0] uio_in;
 	output wire [7:0] uio_out;
+    output wire [7:0] uio_oe;
 	input wire ena;
 	input wire clk;
 	input wire rst_n;
@@ -63,11 +64,11 @@ module tt_um_vzayakov_top (
 	assign ui_out[7] = VGA_B;
 	assign VGA_SYNC_N = 1'b0;
 	assign VGA_BLANK_N = ~blank;
-	assign VGA_CLK = ~clock;
+	assign VGA_CLK = ~clk;
 	pong DUT(
 		.serve_L_async(serve_L_button),
 		.reset_L(rst_n),
-		.CLOCK_50(clock),
+		.CLOCK_50(clk),
 		.R_move_async(R_move_switch),
 		.R_up_async(R_up_switch),
 		.L_move_async(L_move_switch),
