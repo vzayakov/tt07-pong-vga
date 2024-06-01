@@ -682,6 +682,8 @@ module pong_fsm (
 					nextState = 4'b1000;
 				showScoreRight = 1'b1;
 			end
+			default:
+				nextState = 4'b0000;
 		endcase
 	end
 endmodule
@@ -1630,6 +1632,8 @@ module vga (
 				clear_vs = 1'b0;
 				clear_row = 1'b0;
 			end
+			default:
+				nextState = 2'b00;
 		endcase
 	end
 	assign HS = ~isB_hp;
