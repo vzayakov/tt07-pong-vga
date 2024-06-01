@@ -1,7 +1,7 @@
 `default_nettype none
 module tt_um_vzayakov_top (
 	ui_in,
-	ui_out,
+	uo_out,
 	uio_in,
 	uio_out,
 	uio_oe,
@@ -54,14 +54,14 @@ module tt_um_vzayakov_top (
 	assign L_move_switch = ui_in[2];
 	assign L_up_switch = ui_in[3];
 	assign serve_L_button = ui_in[4];
-	assign ui_out[0] = VGA_CLK;
-	assign ui_out[1] = VGA_BLANK_N;
-	assign ui_out[2] = VGA_SYNC_N;
-	assign ui_out[3] = VGA_VS;
-	assign ui_out[4] = VGA_HS;
-	assign ui_out[5] = VGA_R;
-	assign ui_out[6] = VGA_G;
-	assign ui_out[7] = VGA_B;
+	assign uo_out[0] = VGA_CLK;
+	assign uo_out[1] = VGA_BLANK_N;
+	assign uo_out[2] = VGA_SYNC_N;
+	assign uo_out[3] = VGA_VS;
+	assign uo_out[4] = VGA_HS;
+	assign uo_out[5] = VGA_R;
+	assign uo_out[6] = VGA_G;
+	assign uo_out[7] = VGA_B;
 	assign VGA_SYNC_N = 1'b0;
 	assign VGA_BLANK_N = ~blank;
 	assign VGA_CLK = ~clk;
