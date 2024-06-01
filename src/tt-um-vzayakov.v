@@ -1,5 +1,5 @@
 `default_nettype none
-module tt_um_vzayakov (
+module tt_um_vzayakov_top (
 	ui_in,
 	ui_out,
 	uio_in,
