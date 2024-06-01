@@ -1678,7 +1678,7 @@ module DFlipFlop (
 	input wire clock;
 	input wire reset_L;
 	input wire preset_L;
-	always @(posedge clock or negedge reset_L or negedge preset_L)
+	always @(posedge clock)
 		if (~reset_L)
 			Q <= 0;
 		else if (~preset_L)
