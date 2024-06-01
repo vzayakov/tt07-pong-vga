@@ -135,7 +135,7 @@ module SevenSegment (
 );
 	input wire [3:0] BCDnumber;
 	output reg [6:0] hexOutput_L;
-	always @(*)
+	always
 		case (BCDnumber)
 			4'd0: hexOutput_L = 7'b1000000;
 			4'd1: hexOutput_L = 7'b1111001;
@@ -458,7 +458,7 @@ module pong (
 		.preset_L(),
 		.reset_L()
 	);
-	always @(*)
+	always
 		if (VS_display_done)
 			in_done = 1'b1;
 		else
@@ -490,7 +490,7 @@ module pong (
 		.val(sum_right),
 		.is_between(is_btwn_RPad)
 	);
-	always @(*)
+	always
 		if ((is_btwn_RPad && rightHit) && VS_display_done)
 			D_left = 1'b1;
 		else if ((is_btwn_LPad && leftHit) && VS_display_done)
@@ -574,7 +574,7 @@ module pong_fsm (
 		.reset_L(reset_L),
 		.preset_L(1'b1)
 	);
-	always @(*) begin
+	always begin
 		reset_paddle = 1'b0;
 		reset_ballcol = 1'b0;
 		reset_ballrow = 1'b0;
@@ -844,7 +844,7 @@ module Ball (
 	);
 	assign up = Q_up;
 	assign left = Q_left;
-	always @(*)
+	always
 		if (ballTop)
 			D_up = 1'b0;
 		else if (ballBottom)
@@ -906,7 +906,7 @@ module Paddle (
 		.AgtB(bounds1gt),
 		.AeqB()
 	);
-	always @(*)
+	always
 		if (bounds0lt & up)
 			case (Q_P)
 				9'd4: AddIn = 9'b111111100;
@@ -1067,7 +1067,7 @@ module Color (
 		.AltB(),
 		.AgtB()
 	);
-	always @(*)
+	always
 		if (BR_isB & BC_isB) begin
 			VGA_R = 1'b1;
 			VGA_G = 1'b1;
@@ -1592,7 +1592,7 @@ module vga (
 	assign en_hs = ~HS_done;
 	assign clear_hs = HS_done;
 	assign clear_col = HS_done | (currState == 2'b00);
-	always @(*) begin
+	always begin
 		en_vs = 1'b0;
 		load_vs = 1'b0;
 		load_hs = 1'b0;
@@ -1794,7 +1794,7 @@ module RangeCheck (
 		.AgtB(valGtLow),
 		.AltB(valLtLow)
 	);
-	always @(*)
+	always
 		if (valGtHigh | valLtLow)
 			is_between = 1'b0;
 		else
