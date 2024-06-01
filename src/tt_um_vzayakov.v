@@ -65,6 +65,8 @@ module tt_um_vzayakov_top (
 	assign VGA_SYNC_N = 1'b0;
 	assign VGA_BLANK_N = ~blank;
 	assign VGA_CLK = ~clk;
+	assign uio_out = 8'b0;
+	assign uio_oe = 8'b0;
 	pong DUT(
 		.serve_L_async(serve_L_button),
 		.reset_L(rst_n),
@@ -1486,13 +1488,9 @@ module vga (
 	wire [10:0] Q_HS;
 	reg [10:0] D_HS;
 	wire [8:0] Q_row;
-	wire [8:0] D_row;
 	wire [9:0] Q_col;
-	wire [9:0] D_col;
 	reg load_vs;
 	reg load_hs;
-	wire load_row;
-	wire load_col;
 	wire VS_done;
 	wire HS_done;
 	wire isB_vp;
@@ -1534,19 +1532,19 @@ module vga (
 	Counter #(.WIDTH(9)) RowCounter(
 		.en(en_row),
 		.clear(clear_row),
-		.load(load_row),
+		.load(),
 		.up(1'b1),
 		.clock(CLOCK_50),
-		.D(D_row),
+		.D(),
 		.Q(Q_row)
 	);
 	Counter #(.WIDTH(10)) ColCounter(
 		.en(en_col),
 		.clear(clear_col),
-		.load(load_col),
+		.load(),
 		.up(1'b1),
 		.clock(CLOCK_50),
-		.D(D_col),
+		.D(),
 		.Q(Q_col)
 	);
 	RangeCheck #(.WIDTH(20)) VS_pulse(
